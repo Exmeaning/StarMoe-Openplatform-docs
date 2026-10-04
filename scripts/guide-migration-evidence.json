@@ -1,0 +1,1217 @@
+[
+  {
+    "locale": "zh-CN",
+    "prefix": "",
+    "pages": [
+      "index.md",
+      "quickstart.md",
+      "guides/auth.md",
+      "guides/limits.md",
+      "guides/errors.md",
+      "guides/saves.md",
+      "api/index.md",
+      "public-data.md",
+      "public-ranking-contract.md"
+    ],
+    "retained": [
+      {
+        "page": "index.md",
+        "field": "title",
+        "text": "开放平台接入文档"
+      },
+      {
+        "page": "index.md",
+        "field": "description",
+        "text": "通过 Moenotes API 接入公开玩家资料、排行榜、卡池数据与经过用户授权的 gzip 存档下载。"
+      },
+      {
+        "page": "index.md",
+        "field": "intro",
+        "text": "注册应用即获得 clientID 与 Secret，无需机器人、验证码或审核。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepRegister",
+        "text": "登录后在控制台填写应用名称并创建应用。全部可用权限与地区会自动开通，无需选择；保存 clientID 与仅展示一次的 Secret。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepProfile",
+        "text": "在服务端使用 Secret 调用公开游戏 API。公开玩家资料不需要存档授权。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepInvite",
+        "text": "发送带有 ?invite=clientID 的邀请链接。用户登录后选择具体已上传存档并明确确认授权；仅打开链接不会授权。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepDownload",
+        "text": "仅可下载已经授权的 saveServer/accountID 组合。用户随时可以撤销访问。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "security",
+        "text": "Secret 只保存在服务端，不得放入浏览器代码、URL 或公开仓库。这不是 OAuth 流程，不发放授权码、回调或用户访问令牌。轮换时先部署新密钥，再撤销旧密钥。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "scopesHint",
+        "text": "主站创建应用时会自动开通全部可用 scope 与地区，无需额外选择。密钥仍受应用权限约束，超出其 scope 的请求会返回 403；存档读取仍须用户明确授权。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionHint",
+        "text": "所有游戏 API 路径都以 /api/open/v1/moenotes/{region} 开头，region 必填：tw、jp、en 或 kr。query 写法与路径写法等价，例如 /profile?playerProfileId=… 或 /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100。OpenAPI 文档位于 /api/open/openapi.json，机器可读目录位于 /api/open/catalog。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionServers",
+        "text": "region 决定游戏服务器，同一接口在不同服务器返回的数据并不相同：tw 为港澳台繁体中文服，jp 为日本服，en 为国际（英文）服，kr 为韩服。数字 ID 只在其所属区服内有意义，请始终传入账号所属的 region。公告、卡池、活动、排行榜与圈子都按区服各自维护且不同步，因此某一区服取得的 ID 在另一区服通常无效。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionCaution",
+        "text": "不要假设各区服返回相同的结构或相同的数据行。请把 region 写进请求 URL、缓存键以及你保存的任何 ID，并把某一区服缺少数据视为正常情况。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "security",
+        "text": "Secret 只保存在服务端，不得放入浏览器代码、URL 或公开仓库。这不是 OAuth 流程，不发放授权码、回调或用户访问令牌。轮换时先部署新密钥，再撤销旧密钥。"
+      },
+      {
+        "page": "guides/limits.md",
+        "field": "security",
+        "text": "Secret 只保存在服务端，不得放入浏览器代码、URL 或公开仓库。这不是 OAuth 流程，不发放授权码、回调或用户访问令牌。轮换时先部署新密钥，再撤销旧密钥。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveHint",
+        "text": "返回原始 gzip 字节，而非 JSON。请将响应保存为 .gz 文件并自行解压。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepInvite",
+        "text": "发送带有 ?invite=clientID 的邀请链接。用户登录后选择具体已上传存档并明确确认授权；仅打开链接不会授权。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepDownload",
+        "text": "仅可下载已经授权的 saveServer/accountID 组合。用户随时可以撤销访问。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveAxis",
+        "text": "存档接口不使用游戏 API 的 region。saveServer 只有 intl（国际服，覆盖台服、国际/英文服与韩服）与 jp（日服）两个值，没有 tw、en 或 kr。在任一国际服上传的存档都归属 intl，因此请按账号实际所在服务器选择，而不是按调用游戏 API 时使用的 region。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerIntl",
+        "text": "国际服：台服、国际/英文服与韩服。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerJp",
+        "text": "日服。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "security",
+        "text": "Secret 只保存在服务端，不得放入浏览器代码、URL 或公开仓库。这不是 OAuth 流程，不发放授权码、回调或用户访问令牌。轮换时先部署新密钥，再撤销旧密钥。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "scopesHint",
+        "text": "主站创建应用时会自动开通全部可用 scope 与地区，无需额外选择。密钥仍受应用权限约束，超出其 scope 的请求会返回 403；存档读取仍须用户明确授权。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionHint",
+        "text": "所有游戏 API 路径都以 /api/open/v1/moenotes/{region} 开头，region 必填：tw、jp、en 或 kr。query 写法与路径写法等价，例如 /profile?playerProfileId=… 或 /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100。OpenAPI 文档位于 /api/open/openapi.json，机器可读目录位于 /api/open/catalog。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionServers",
+        "text": "region 决定游戏服务器，同一接口在不同服务器返回的数据并不相同：tw 为港澳台繁体中文服，jp 为日本服，en 为国际（英文）服，kr 为韩服。数字 ID 只在其所属区服内有意义，请始终传入账号所属的 region。公告、卡池、活动、排行榜与圈子都按区服各自维护且不同步，因此某一区服取得的 ID 在另一区服通常无效。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionCaution",
+        "text": "不要假设各区服返回相同的结构或相同的数据行。请把 region 写进请求 URL、缓存键以及你保存的任何 ID，并把某一区服缺少数据视为正常情况。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "music",
+        "text": "歌曲榜响应保留 players 顺序，行没有 rank；展示顺位可用 index + 1，并标明来源是响应顺序。不要按分数重新排序或推导并列规则，数量也不保证固定 100 行。空对象按 players ?? [] 处理。musicId 必须属于所选区服歌曲目录。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "challenge",
+        "text": "先查询活动的 challenges 目录，再用 challengeMusicId 请求，不能以普通 musicId 替代。挑战榜不使用 ranks、分页或难度参数；积分榜 disabled 不代表挑战歌曲榜禁用。每首歌单独维护状态和采集时间。X-Final-Quality: lastSeen 只是最后成功观测，不是确认过的官方最终名次；三首歌曲也不构成同一时刻的快照。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "latest",
+        "text": "latest 是最新合并快照。rows 中缺失名次不能补为零；parts 各有 fetchedAt，重复名次可能多行且标记 dup。stale 表示采集中断后保留旧结果，frozen 表示集计冻结。以 X-Server-Time 与 updatedAt 判断年龄，按 nextUpdateAt 加随机抖动轮询。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "caching",
+        "text": "使用 ETag 与 If-None-Match 支持 304，并遵循 Cache-Control。X-Fetched-At 是实际采集时间，缓存命中不刷新它；X-Stale: 1 表示旧快照，X-Refreshing: 1 表示刷新已排队或进行中。503 pending/upstream 时遵守 Retry-After，指数退避；不要用固定高频重试绕过服务调度。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "notice",
+        "text": "公告列表由前端按 category 筛选；startAt、endAt、lastUpdatedAt 是 Unix 秒的十进制字符串，和榜线的毫秒不同。详情可用 rev 指定已缓存版本，省略时返回最新版本。X-Revision 标识版本，X-Listed: 0 表示已从列表撤下。正文是完整未过滤 HTML，必须放入不带 allow-scripts 或 allow-same-origin 的 sandbox iframe，不可插入主页面 DOM。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "music",
+        "text": "歌曲榜响应保留 players 顺序，行没有 rank；展示顺位可用 index + 1，并标明来源是响应顺序。不要按分数重新排序或推导并列规则，数量也不保证固定 100 行。空对象按 players ?? [] 处理。musicId 必须属于所选区服歌曲目录。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "challenge",
+        "text": "先查询活动的 challenges 目录，再用 challengeMusicId 请求，不能以普通 musicId 替代。挑战榜不使用 ranks、分页或难度参数；积分榜 disabled 不代表挑战歌曲榜禁用。每首歌单独维护状态和采集时间。X-Final-Quality: lastSeen 只是最后成功观测，不是确认过的官方最终名次；三首歌曲也不构成同一时刻的快照。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "latest",
+        "text": "latest 是最新合并快照。rows 中缺失名次不能补为零；parts 各有 fetchedAt，重复名次可能多行且标记 dup。stale 表示采集中断后保留旧结果，frozen 表示集计冻结。以 X-Server-Time 与 updatedAt 判断年龄，按 nextUpdateAt 加随机抖动轮询。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "caching",
+        "text": "使用 ETag 与 If-None-Match 支持 304，并遵循 Cache-Control。X-Fetched-At 是实际采集时间，缓存命中不刷新它；X-Stale: 1 表示旧快照，X-Refreshing: 1 表示刷新已排队或进行中。503 pending/upstream 时遵守 Retry-After，指数退避；不要用固定高频重试绕过服务调度。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "notice",
+        "text": "公告列表由前端按 category 筛选；startAt、endAt、lastUpdatedAt 是 Unix 秒的十进制字符串，和榜线的毫秒不同。详情可用 rev 指定已缓存版本，省略时返回最新版本。X-Revision 标识版本，X-Listed: 0 表示已从列表撤下。正文是完整未过滤 HTML，必须放入不带 allow-scripts 或 allow-same-origin 的 sandbox iframe，不可插入主页面 DOM。"
+      }
+    ],
+    "sourceFields": [
+      "title",
+      "description",
+      "overview",
+      "intro",
+      "stepRegister",
+      "stepProfile",
+      "stepInvite",
+      "stepDownload",
+      "scopesHint",
+      "regionHint",
+      "regionServers",
+      "regionCaution",
+      "security",
+      "archiveHint",
+      "archiveAxis",
+      "archiveServerIntl",
+      "archiveServerJp",
+      "limits"
+    ],
+    "corrected": [
+      "quota 100/minute 10000/day",
+      "save authorization absence returns 404",
+      "main site links use bdon.moe/account"
+    ],
+    "translatedAdditions": [
+      "public",
+      "contract",
+      "console",
+      "account",
+      "parameters",
+      "result",
+      "limits",
+      "auth",
+      "errors",
+      "api",
+      "version",
+      "publicIntro",
+      "snapshot",
+      "music",
+      "challenge",
+      "latest",
+      "caching",
+      "notice",
+      "curves",
+      "permission",
+      "saveError",
+      "saveFormat",
+      "charge",
+      "status"
+    ]
+  },
+  {
+    "locale": "zh-TW",
+    "prefix": "zh-tw",
+    "pages": [
+      "index.md",
+      "quickstart.md",
+      "guides/auth.md",
+      "guides/limits.md",
+      "guides/errors.md",
+      "guides/saves.md",
+      "api/index.md",
+      "public-data.md",
+      "public-ranking-contract.md"
+    ],
+    "retained": [
+      {
+        "page": "index.md",
+        "field": "title",
+        "text": "開放平台接入文件"
+      },
+      {
+        "page": "index.md",
+        "field": "description",
+        "text": "透過 Moenotes API 接入公開玩家資料、排行榜、卡池資料與經過使用者授權的 gzip 存檔下載。"
+      },
+      {
+        "page": "index.md",
+        "field": "intro",
+        "text": "註冊應用程式即取得 clientID 與 Secret，無需機器人、驗證碼或審核。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepRegister",
+        "text": "登入後在控制台填寫應用程式名稱並建立。全部可用權限與地區會自動開通，不需選擇；保存 clientID 與僅顯示一次的 Secret。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepProfile",
+        "text": "在伺服器端使用 Secret 呼叫公開遊戲 API。公開玩家資料不需要存檔授權。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepInvite",
+        "text": "傳送帶有 ?invite=clientID 的邀請連結。使用者登入後選擇指定已上傳存檔並明確確認授權；僅開啟連結不會授權。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepDownload",
+        "text": "僅可下載已授權的 saveServer/accountID 組合。使用者隨時可以撤銷存取。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "security",
+        "text": "Secret 只保存在伺服器端，不得放入瀏覽器程式碼、URL 或公開儲存庫。這不是 OAuth 流程，不發放授權碼、回呼或使用者存取權杖。輪替時先部署新金鑰，再撤銷舊金鑰。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "scopesHint",
+        "text": "主站建立應用程式時會自動開通全部可用 scope 與地區，不需額外選擇。金鑰仍受應用程式權限約束，超出其 scope 的請求會回傳 403；存檔讀取仍須使用者明確授權。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionHint",
+        "text": "所有遊戲 API 路徑都以 /api/open/v1/moenotes/{region} 開頭，region 必填：tw、jp、en 或 kr。query 寫法與路徑寫法等價，例如 /profile?playerProfileId=… 或 /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100。OpenAPI 文件位於 /api/open/openapi.json，機器可讀目錄位於 /api/open/catalog。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionServers",
+        "text": "region 決定遊戲伺服器，同一介面在不同伺服器回傳的資料並不相同：tw 為港澳台繁體中文服，jp 為日本服，en 為國際（英文）服，kr 為韓服。數字 ID 只在其所屬區服內有意義，請一律傳入帳號所屬的 region。公告、卡池、活動、排行榜與圈圈都依區服各自維護且不同步，因此某一區服取得的 ID 在另一區服通常無效。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionCaution",
+        "text": "請勿假設各區服回傳相同結構或相同資料列。請把 region 寫進請求 URL、快取鍵以及你保存的任何 ID，並將某一區服缺少資料視為正常情況。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "security",
+        "text": "Secret 只保存在伺服器端，不得放入瀏覽器程式碼、URL 或公開儲存庫。這不是 OAuth 流程，不發放授權碼、回呼或使用者存取權杖。輪替時先部署新金鑰，再撤銷舊金鑰。"
+      },
+      {
+        "page": "guides/limits.md",
+        "field": "security",
+        "text": "Secret 只保存在伺服器端，不得放入瀏覽器程式碼、URL 或公開儲存庫。這不是 OAuth 流程，不發放授權碼、回呼或使用者存取權杖。輪替時先部署新金鑰，再撤銷舊金鑰。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveHint",
+        "text": "回傳原始 gzip 位元組，而非 JSON。請將回應儲存為 .gz 檔案並自行解壓縮。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepInvite",
+        "text": "傳送帶有 ?invite=clientID 的邀請連結。使用者登入後選擇指定已上傳存檔並明確確認授權；僅開啟連結不會授權。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepDownload",
+        "text": "僅可下載已授權的 saveServer/accountID 組合。使用者隨時可以撤銷存取。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveAxis",
+        "text": "存檔介面不使用遊戲 API 的 region。saveServer 只有 intl（國際服，涵蓋台服、國際／英文服與韓服）與 jp（日服）兩個值，沒有 tw、en 或 kr。在任一國際服上傳的存檔都歸屬 intl，因此請依帳號實際所在伺服器選擇，而不是依呼叫遊戲 API 時使用的 region。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerIntl",
+        "text": "國際服：台服、國際／英文服與韓服。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerJp",
+        "text": "日服。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "security",
+        "text": "Secret 只保存在伺服器端，不得放入瀏覽器程式碼、URL 或公開儲存庫。這不是 OAuth 流程，不發放授權碼、回呼或使用者存取權杖。輪替時先部署新金鑰，再撤銷舊金鑰。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "scopesHint",
+        "text": "主站建立應用程式時會自動開通全部可用 scope 與地區，不需額外選擇。金鑰仍受應用程式權限約束，超出其 scope 的請求會回傳 403；存檔讀取仍須使用者明確授權。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionHint",
+        "text": "所有遊戲 API 路徑都以 /api/open/v1/moenotes/{region} 開頭，region 必填：tw、jp、en 或 kr。query 寫法與路徑寫法等價，例如 /profile?playerProfileId=… 或 /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100。OpenAPI 文件位於 /api/open/openapi.json，機器可讀目錄位於 /api/open/catalog。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionServers",
+        "text": "region 決定遊戲伺服器，同一介面在不同伺服器回傳的資料並不相同：tw 為港澳台繁體中文服，jp 為日本服，en 為國際（英文）服，kr 為韓服。數字 ID 只在其所屬區服內有意義，請一律傳入帳號所屬的 region。公告、卡池、活動、排行榜與圈圈都依區服各自維護且不同步，因此某一區服取得的 ID 在另一區服通常無效。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionCaution",
+        "text": "請勿假設各區服回傳相同結構或相同資料列。請把 region 寫進請求 URL、快取鍵以及你保存的任何 ID，並將某一區服缺少資料視為正常情況。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "music",
+        "text": "歌曲榜保留 players 順序，資料列沒有 rank；顯示順位可用 index + 1，並註明來自回應順序。不要依分數重新排序或推論同名次規則，也不保證固定 100 列。空物件以 players ?? [] 處理。musicId 必須屬於所選區服歌曲目錄。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "challenge",
+        "text": "先查詢活動的 challenges 目錄，再用 challengeMusicId 請求，不能以普通 musicId 代替。挑戰榜沒有 ranks、分頁或難度參數；積分榜 disabled 不代表歌曲榜停用。每首歌獨立維護狀態及採集時間。X-Final-Quality: lastSeen 只是最後成功觀測，不是已確認的官方最終名次；三首歌也不是同時快照。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "latest",
+        "text": "latest 是最新合併快照。rows 缺少的名次不可填零；parts 各有 fetchedAt，重複名次可有多列並標示 dup。stale 表示中斷後保留舊結果，frozen 表示集計凍結。使用 X-Server-Time 與 updatedAt 計算資料年齡，依 nextUpdateAt 加隨機延遲輪詢。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "caching",
+        "text": "使用 ETag 與 If-None-Match 取得 304，並遵守 Cache-Control。X-Fetched-At 是實際採集時間，快取命中不會更新；X-Stale: 1 表示舊快照，X-Refreshing: 1 表示已排隊或正在更新。503 pending/upstream 時遵守 Retry-After 並採用指數退避，不要固定高頻重試。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "notice",
+        "text": "公告列表由前端依 category 篩選；startAt、endAt、lastUpdatedAt 是 Unix 秒的十進位字串，與榜線毫秒不同。詳情可用 rev 指定已快取版本，省略則回傳最新版。X-Revision 標示版本，X-Listed: 0 表示公告已撤下。正文為完整未過濾 HTML，必須使用不加 allow-scripts 或 allow-same-origin 的 sandbox iframe，不可插入主頁 DOM。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "music",
+        "text": "歌曲榜保留 players 順序，資料列沒有 rank；顯示順位可用 index + 1，並註明來自回應順序。不要依分數重新排序或推論同名次規則，也不保證固定 100 列。空物件以 players ?? [] 處理。musicId 必須屬於所選區服歌曲目錄。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "challenge",
+        "text": "先查詢活動的 challenges 目錄，再用 challengeMusicId 請求，不能以普通 musicId 代替。挑戰榜沒有 ranks、分頁或難度參數；積分榜 disabled 不代表歌曲榜停用。每首歌獨立維護狀態及採集時間。X-Final-Quality: lastSeen 只是最後成功觀測，不是已確認的官方最終名次；三首歌也不是同時快照。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "latest",
+        "text": "latest 是最新合併快照。rows 缺少的名次不可填零；parts 各有 fetchedAt，重複名次可有多列並標示 dup。stale 表示中斷後保留舊結果，frozen 表示集計凍結。使用 X-Server-Time 與 updatedAt 計算資料年齡，依 nextUpdateAt 加隨機延遲輪詢。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "caching",
+        "text": "使用 ETag 與 If-None-Match 取得 304，並遵守 Cache-Control。X-Fetched-At 是實際採集時間，快取命中不會更新；X-Stale: 1 表示舊快照，X-Refreshing: 1 表示已排隊或正在更新。503 pending/upstream 時遵守 Retry-After 並採用指數退避，不要固定高頻重試。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "notice",
+        "text": "公告列表由前端依 category 篩選；startAt、endAt、lastUpdatedAt 是 Unix 秒的十進位字串，與榜線毫秒不同。詳情可用 rev 指定已快取版本，省略則回傳最新版。X-Revision 標示版本，X-Listed: 0 表示公告已撤下。正文為完整未過濾 HTML，必須使用不加 allow-scripts 或 allow-same-origin 的 sandbox iframe，不可插入主頁 DOM。"
+      }
+    ],
+    "sourceFields": [
+      "title",
+      "description",
+      "overview",
+      "intro",
+      "stepRegister",
+      "stepProfile",
+      "stepInvite",
+      "stepDownload",
+      "scopesHint",
+      "regionHint",
+      "regionServers",
+      "regionCaution",
+      "security",
+      "archiveHint",
+      "archiveAxis",
+      "archiveServerIntl",
+      "archiveServerJp",
+      "limits"
+    ],
+    "corrected": [
+      "quota 100/minute 10000/day",
+      "save authorization absence returns 404",
+      "main site links use bdon.moe/account"
+    ],
+    "translatedAdditions": [
+      "public",
+      "contract",
+      "console",
+      "account",
+      "parameters",
+      "result",
+      "limits",
+      "auth",
+      "errors",
+      "api",
+      "version",
+      "publicIntro",
+      "snapshot",
+      "music",
+      "challenge",
+      "latest",
+      "caching",
+      "notice",
+      "curves",
+      "permission",
+      "saveError",
+      "saveFormat",
+      "charge",
+      "status"
+    ]
+  },
+  {
+    "locale": "en-US",
+    "prefix": "en",
+    "pages": [
+      "index.md",
+      "quickstart.md",
+      "guides/auth.md",
+      "guides/limits.md",
+      "guides/errors.md",
+      "guides/saves.md",
+      "api/index.md",
+      "public-data.md",
+      "public-ranking-contract.md"
+    ],
+    "retained": [
+      {
+        "page": "index.md",
+        "field": "title",
+        "text": "Open Platform documentation"
+      },
+      {
+        "page": "index.md",
+        "field": "description",
+        "text": "Integrate public profiles, rankings, gacha data and authorized gzip archive downloads with the Moenotes API."
+      },
+      {
+        "page": "index.md",
+        "field": "intro",
+        "text": "Register an application to receive a client ID and secret immediately. No bot, verification code or review is required."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepRegister",
+        "text": "Sign in, enter an application name in the console and create it. All available permissions and regions are enabled automatically, with no selection step. Save the clientID and the secret shown only once."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepProfile",
+        "text": "Call the public game API from your server with the secret. Public profiles do not require archive authorization."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepInvite",
+        "text": "Send the invitation link containing ?invite=clientID. Users sign in, select specific uploaded archives and explicitly authorize access. A link alone grants nothing."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepDownload",
+        "text": "Download only the authorized saveServer/accountID pairs. Users may revoke access at any time."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "security",
+        "text": "Keep the Secret only on your server, never in browser bundles, URLs or public repositories. This is not an OAuth flow: no authorization code, redirect callback or user access token is issued. Rotate keys by deploying the new secret before revoking the old one."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "scopesHint",
+        "text": "Applications created in the main-site console automatically receive all available scopes and regions. No extra selection is required. Keys remain constrained by their application scopes; requests outside those scopes return 403. Archive access still requires explicit user consent."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionHint",
+        "text": "Every game API path starts with /api/open/v1/moenotes/{region}, and region is required: tw, jp, en or kr. Query forms are equivalent, for example /profile?playerProfileId=… or /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100. The OpenAPI document lives at /api/open/openapi.json and a machine-readable catalog at /api/open/catalog."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionServers",
+        "text": "Region selects the game server, and the same endpoint returns different data for each: tw is the Traditional Chinese server for Hong Kong, Macau and Taiwan, jp is the Japanese server, en is the international (English) server, and kr is the Korean server. A numeric id only means something inside its own region, so always pass the region the account belongs to. Announcements, gacha pools, events, rankings and circles are maintained per region and are not synced, so an id taken from one region is not valid in another."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionCaution",
+        "text": "Never assume the regions return the same shape or the same rows. Build the region into your request URL, cache keys and any id you store, and treat missing data in one region as normal."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "security",
+        "text": "Keep the Secret only on your server, never in browser bundles, URLs or public repositories. This is not an OAuth flow: no authorization code, redirect callback or user access token is issued. Rotate keys by deploying the new secret before revoking the old one."
+      },
+      {
+        "page": "guides/limits.md",
+        "field": "security",
+        "text": "Keep the Secret only on your server, never in browser bundles, URLs or public repositories. This is not an OAuth flow: no authorization code, redirect callback or user access token is issued. Rotate keys by deploying the new secret before revoking the old one."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveHint",
+        "text": "Returns the original gzip bytes, not JSON. Save the response as a .gz file and decompress it yourself."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepInvite",
+        "text": "Send the invitation link containing ?invite=clientID. Users sign in, select specific uploaded archives and explicitly authorize access. A link alone grants nothing."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepDownload",
+        "text": "Download only the authorized saveServer/accountID pairs. Users may revoke access at any time."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveAxis",
+        "text": "Archives do not use the game API region. saveServer is only intl (the international servers, covering Taiwan, international/English and Korea) or jp (the Japanese server) — there is no tw, en or kr value here. A save uploaded from any of the international servers lives under intl, so pick the server axis from where the account actually plays, not from the region you use for the game API."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerIntl",
+        "text": "The international servers: Taiwan, international/English and Korea."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerJp",
+        "text": "The Japanese server."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "security",
+        "text": "Keep the Secret only on your server, never in browser bundles, URLs or public repositories. This is not an OAuth flow: no authorization code, redirect callback or user access token is issued. Rotate keys by deploying the new secret before revoking the old one."
+      },
+      {
+        "page": "api/index.md",
+        "field": "scopesHint",
+        "text": "Applications created in the main-site console automatically receive all available scopes and regions. No extra selection is required. Keys remain constrained by their application scopes; requests outside those scopes return 403. Archive access still requires explicit user consent."
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionHint",
+        "text": "Every game API path starts with /api/open/v1/moenotes/{region}, and region is required: tw, jp, en or kr. Query forms are equivalent, for example /profile?playerProfileId=… or /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100. The OpenAPI document lives at /api/open/openapi.json and a machine-readable catalog at /api/open/catalog."
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionServers",
+        "text": "Region selects the game server, and the same endpoint returns different data for each: tw is the Traditional Chinese server for Hong Kong, Macau and Taiwan, jp is the Japanese server, en is the international (English) server, and kr is the Korean server. A numeric id only means something inside its own region, so always pass the region the account belongs to. Announcements, gacha pools, events, rankings and circles are maintained per region and are not synced, so an id taken from one region is not valid in another."
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionCaution",
+        "text": "Never assume the regions return the same shape or the same rows. Build the region into your request URL, cache keys and any id you store, and treat missing data in one region as normal."
+      },
+      {
+        "page": "public-data.md",
+        "field": "music",
+        "text": "Music rankings preserve players in response order and have no rank field. Display index + 1 with an explicit response-order label. Do not sort by score again or infer tie rules, and do not assume exactly 100 entries. Treat an empty object as players ?? []. musicId must belong to the selected regional music catalog."
+      },
+      {
+        "page": "public-data.md",
+        "field": "challenge",
+        "text": "Read the event challenges catalog first, then request challengeMusicId, not the ordinary musicId. Challenge rankings have no ranks, pagination or difficulty parameters. A disabled point ranking does not disable the challenge songs. Each song has independent collection status and fetch time. X-Final-Quality: lastSeen is only the last successful observation, not a verified official final ranking; separate songs are not a simultaneous snapshot."
+      },
+      {
+        "page": "public-data.md",
+        "field": "latest",
+        "text": "latest is a merged snapshot. Do not replace missing rows with zero. Each part has its own fetchedAt; duplicate ranks can have multiple rows marked dup. stale means an old successful result survived a collection interruption; frozen marks score freezing during aggregation. Measure age using X-Server-Time and updatedAt, and poll around nextUpdateAt with random jitter."
+      },
+      {
+        "page": "public-data.md",
+        "field": "caching",
+        "text": "Use ETag and If-None-Match for 304 responses and respect Cache-Control. X-Fetched-At is the actual collection time and does not change on a cache hit. X-Stale: 1 marks an old snapshot; X-Refreshing: 1 means a refresh is queued or running. For 503 pending/upstream, honor Retry-After and exponential backoff rather than fixed high-frequency retries."
+      },
+      {
+        "page": "public-data.md",
+        "field": "notice",
+        "text": "Filter announcement lists by category on the client. startAt, endAt and lastUpdatedAt are Unix seconds represented as decimal strings, unlike ranking milliseconds. rev selects a stored revision; omission returns the latest. X-Revision identifies the version; X-Listed: 0 marks an announcement removed from the list. The body is a complete unfiltered HTML document: render only inside a sandbox iframe without allow-scripts or allow-same-origin, never directly in the main DOM."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "music",
+        "text": "Music rankings preserve players in response order and have no rank field. Display index + 1 with an explicit response-order label. Do not sort by score again or infer tie rules, and do not assume exactly 100 entries. Treat an empty object as players ?? []. musicId must belong to the selected regional music catalog."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "challenge",
+        "text": "Read the event challenges catalog first, then request challengeMusicId, not the ordinary musicId. Challenge rankings have no ranks, pagination or difficulty parameters. A disabled point ranking does not disable the challenge songs. Each song has independent collection status and fetch time. X-Final-Quality: lastSeen is only the last successful observation, not a verified official final ranking; separate songs are not a simultaneous snapshot."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "latest",
+        "text": "latest is a merged snapshot. Do not replace missing rows with zero. Each part has its own fetchedAt; duplicate ranks can have multiple rows marked dup. stale means an old successful result survived a collection interruption; frozen marks score freezing during aggregation. Measure age using X-Server-Time and updatedAt, and poll around nextUpdateAt with random jitter."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "caching",
+        "text": "Use ETag and If-None-Match for 304 responses and respect Cache-Control. X-Fetched-At is the actual collection time and does not change on a cache hit. X-Stale: 1 marks an old snapshot; X-Refreshing: 1 means a refresh is queued or running. For 503 pending/upstream, honor Retry-After and exponential backoff rather than fixed high-frequency retries."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "notice",
+        "text": "Filter announcement lists by category on the client. startAt, endAt and lastUpdatedAt are Unix seconds represented as decimal strings, unlike ranking milliseconds. rev selects a stored revision; omission returns the latest. X-Revision identifies the version; X-Listed: 0 marks an announcement removed from the list. The body is a complete unfiltered HTML document: render only inside a sandbox iframe without allow-scripts or allow-same-origin, never directly in the main DOM."
+      }
+    ],
+    "sourceFields": [
+      "title",
+      "description",
+      "overview",
+      "intro",
+      "stepRegister",
+      "stepProfile",
+      "stepInvite",
+      "stepDownload",
+      "scopesHint",
+      "regionHint",
+      "regionServers",
+      "regionCaution",
+      "security",
+      "archiveHint",
+      "archiveAxis",
+      "archiveServerIntl",
+      "archiveServerJp",
+      "limits"
+    ],
+    "corrected": [
+      "quota 100/minute 10000/day",
+      "save authorization absence returns 404",
+      "main site links use bdon.moe/account"
+    ],
+    "translatedAdditions": [
+      "public",
+      "contract",
+      "console",
+      "account",
+      "parameters",
+      "result",
+      "limits",
+      "auth",
+      "errors",
+      "api",
+      "version",
+      "publicIntro",
+      "snapshot",
+      "music",
+      "challenge",
+      "latest",
+      "caching",
+      "notice",
+      "curves",
+      "permission",
+      "saveError",
+      "saveFormat",
+      "charge",
+      "status"
+    ]
+  },
+  {
+    "locale": "ja-JP",
+    "prefix": "ja",
+    "pages": [
+      "index.md",
+      "quickstart.md",
+      "guides/auth.md",
+      "guides/limits.md",
+      "guides/errors.md",
+      "guides/saves.md",
+      "api/index.md",
+      "public-data.md",
+      "public-ranking-contract.md"
+    ],
+    "retained": [
+      {
+        "page": "index.md",
+        "field": "title",
+        "text": "オープンプラットフォーム API ガイド"
+      },
+      {
+        "page": "index.md",
+        "field": "description",
+        "text": "Moenotes API で公開プロフィール、ランキング、ガチャ情報、許可された gzip セーブを取得します。"
+      },
+      {
+        "page": "index.md",
+        "field": "intro",
+        "text": "アプリ登録ですぐに clientID と Secret が発行されます。ボット、確認コード、審査は不要です。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepRegister",
+        "text": "ログイン後、コンソールにアプリ名を入力して作成します。利用可能なすべての権限とリージョンが自動で有効になり、選択は不要です。clientID と一度だけ表示される Secret を保存してください。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepProfile",
+        "text": "サーバーから Secret で公開ゲーム API を呼び出します。公開プロフィールにセーブの許可は不要です。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepInvite",
+        "text": "?invite=clientID を含むリンクを送ります。ユーザーがログインし、アップロード済みセーブを選択して許可します。リンクを開くだけでは許可されません。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepDownload",
+        "text": "許可済みの saveServer/accountID のみダウンロードできます。ユーザーはいつでも許可を取り消せます。"
+      },
+      {
+        "page": "quickstart.md",
+        "field": "security",
+        "text": "Secret はサーバーのみで保管し、ブラウザーのコード、URL、公開リポジトリには含めないでください。OAuth の認可コード、コールバック、ユーザートークンは発行されません。新しいキーの導入後に古いキーを取り消してください。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "scopesHint",
+        "text": "メインサイトのコンソールで作成したアプリには、利用可能なすべての scope とリージョンが自動で付与されます。追加の選択は不要です。キーはアプリの scope に制限され、その範囲外へのリクエストは 403 になります。セーブの読み取りには引き続きユーザーの明示的な許可が必要です。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionHint",
+        "text": "ゲーム API のパスはすべて /api/open/v1/moenotes/{region} で始まり、region は必須です（tw / jp / en / kr）。query 形式はパス形式と等価で、例として /profile?playerProfileId=… や /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100 があります。OpenAPI 仕様は /api/open/openapi.json、機械可読カタログは /api/open/catalog にあります。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionServers",
+        "text": "region はゲームサーバーを選択し、同じエンドポイントでも返るデータは異なります。tw は香港・マカオ・台湾向け繁体字サーバー、jp は日本サーバー、en は国際（英語）サーバー、kr は韓国サーバーです。数字の id は所属するリージョン内でのみ意味を持つため、必ず対象アカウントの region を指定してください。お知らせ、ガチャ、イベント、ランキング、サークルはリージョンごとに管理され同期されないため、あるリージョンの id は別のリージョンでは通常無効です。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionCaution",
+        "text": "リージョン間で同じ形や同じ行が返ると仮定しないでください。region をリクエスト URL、キャッシュキー、保存する id に必ず含め、あるリージョンでデータが無いことを正常な状態として扱ってください。"
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "security",
+        "text": "Secret はサーバーのみで保管し、ブラウザーのコード、URL、公開リポジトリには含めないでください。OAuth の認可コード、コールバック、ユーザートークンは発行されません。新しいキーの導入後に古いキーを取り消してください。"
+      },
+      {
+        "page": "guides/limits.md",
+        "field": "security",
+        "text": "Secret はサーバーのみで保管し、ブラウザーのコード、URL、公開リポジトリには含めないでください。OAuth の認可コード、コールバック、ユーザートークンは発行されません。新しいキーの導入後に古いキーを取り消してください。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveHint",
+        "text": "JSON ではなく元の gzip バイト列を返します。.gz ファイルとして保存して解凍してください。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepInvite",
+        "text": "?invite=clientID を含むリンクを送ります。ユーザーがログインし、アップロード済みセーブを選択して許可します。リンクを開くだけでは許可されません。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepDownload",
+        "text": "許可済みの saveServer/accountID のみダウンロードできます。ユーザーはいつでも許可を取り消せます。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveAxis",
+        "text": "セーブ API はゲーム API の region を使いません。saveServer は intl（国際サーバー。台湾・国際／英語・韓国を含む）と jp（日本サーバー）の2値だけで、tw・en・kr はありません。国際サーバーでアップロードされたセーブはすべて intl に属するため、ゲーム API で使う region ではなく、アカウントが実際にプレイしているサーバーで選んでください。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerIntl",
+        "text": "国際サーバー：台湾・国際／英語・韓国。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerJp",
+        "text": "日本サーバー。"
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "security",
+        "text": "Secret はサーバーのみで保管し、ブラウザーのコード、URL、公開リポジトリには含めないでください。OAuth の認可コード、コールバック、ユーザートークンは発行されません。新しいキーの導入後に古いキーを取り消してください。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "scopesHint",
+        "text": "メインサイトのコンソールで作成したアプリには、利用可能なすべての scope とリージョンが自動で付与されます。追加の選択は不要です。キーはアプリの scope に制限され、その範囲外へのリクエストは 403 になります。セーブの読み取りには引き続きユーザーの明示的な許可が必要です。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionHint",
+        "text": "ゲーム API のパスはすべて /api/open/v1/moenotes/{region} で始まり、region は必須です（tw / jp / en / kr）。query 形式はパス形式と等価で、例として /profile?playerProfileId=… や /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100 があります。OpenAPI 仕様は /api/open/openapi.json、機械可読カタログは /api/open/catalog にあります。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionServers",
+        "text": "region はゲームサーバーを選択し、同じエンドポイントでも返るデータは異なります。tw は香港・マカオ・台湾向け繁体字サーバー、jp は日本サーバー、en は国際（英語）サーバー、kr は韓国サーバーです。数字の id は所属するリージョン内でのみ意味を持つため、必ず対象アカウントの region を指定してください。お知らせ、ガチャ、イベント、ランキング、サークルはリージョンごとに管理され同期されないため、あるリージョンの id は別のリージョンでは通常無効です。"
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionCaution",
+        "text": "リージョン間で同じ形や同じ行が返ると仮定しないでください。region をリクエスト URL、キャッシュキー、保存する id に必ず含め、あるリージョンでデータが無いことを正常な状態として扱ってください。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "music",
+        "text": "楽曲ランキングは players のレスポンス順を保持し、rank フィールドを持ちません。表示順位は index + 1 とし、レスポンス順であることを示します。スコアで並べ直したり同順位規則を推測したりせず、常に100件とも仮定しません。空オブジェクトは players ?? [] として扱い、musicId は対象リージョンの楽曲カタログに属する必要があります。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "challenge",
+        "text": "先にイベントの challenges カタログを読み、通常の musicId ではなく challengeMusicId を指定します。ranks・ページ分割・難易度パラメータはありません。ポイントランキングの disabled は楽曲ランキング停止を意味しません。曲ごとに状態と取得時刻が独立しています。X-Final-Quality: lastSeen は最後の成功観測であり、確認済みの公式最終順位ではありません。複数曲の結果は同時刻のスナップショットではありません。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "latest",
+        "text": "latest は統合スナップショットです。未取得の順位をゼロに置き換えないでください。parts はそれぞれ fetchedAt を持ち、同じ順位の複数行に dup が付く場合があります。stale は収集中断後の古い成功結果、frozen は集計中のスコア凍結を示します。X-Server-Time と updatedAt から経過時間を求め、nextUpdateAt にランダムな遅延を加えてポーリングします。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "caching",
+        "text": "ETag と If-None-Match による 304 を利用し、Cache-Control に従います。X-Fetched-At は実際の収集時刻で、キャッシュヒットでは変わりません。X-Stale: 1 は古い結果、X-Refreshing: 1 は更新待機中または実行中です。503 pending/upstream では Retry-After と指数バックオフに従い、高頻度の固定再試行を避けてください。"
+      },
+      {
+        "page": "public-data.md",
+        "field": "notice",
+        "text": "お知らせ一覧の category 絞り込みはクライアント側で行います。startAt、endAt、lastUpdatedAt は Unix 秒の10進数文字列で、ランキングのミリ秒とは異なります。rev は保存済み版を指定し、省略時は最新を返します。X-Revision は版、X-Listed: 0 は一覧からの撤去を示します。本文は未処理の完全な HTML 文書なので、allow-scripts と allow-same-origin を付けない sandbox iframe のみで描画し、メイン DOM へ挿入しないでください。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "music",
+        "text": "楽曲ランキングは players のレスポンス順を保持し、rank フィールドを持ちません。表示順位は index + 1 とし、レスポンス順であることを示します。スコアで並べ直したり同順位規則を推測したりせず、常に100件とも仮定しません。空オブジェクトは players ?? [] として扱い、musicId は対象リージョンの楽曲カタログに属する必要があります。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "challenge",
+        "text": "先にイベントの challenges カタログを読み、通常の musicId ではなく challengeMusicId を指定します。ranks・ページ分割・難易度パラメータはありません。ポイントランキングの disabled は楽曲ランキング停止を意味しません。曲ごとに状態と取得時刻が独立しています。X-Final-Quality: lastSeen は最後の成功観測であり、確認済みの公式最終順位ではありません。複数曲の結果は同時刻のスナップショットではありません。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "latest",
+        "text": "latest は統合スナップショットです。未取得の順位をゼロに置き換えないでください。parts はそれぞれ fetchedAt を持ち、同じ順位の複数行に dup が付く場合があります。stale は収集中断後の古い成功結果、frozen は集計中のスコア凍結を示します。X-Server-Time と updatedAt から経過時間を求め、nextUpdateAt にランダムな遅延を加えてポーリングします。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "caching",
+        "text": "ETag と If-None-Match による 304 を利用し、Cache-Control に従います。X-Fetched-At は実際の収集時刻で、キャッシュヒットでは変わりません。X-Stale: 1 は古い結果、X-Refreshing: 1 は更新待機中または実行中です。503 pending/upstream では Retry-After と指数バックオフに従い、高頻度の固定再試行を避けてください。"
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "notice",
+        "text": "お知らせ一覧の category 絞り込みはクライアント側で行います。startAt、endAt、lastUpdatedAt は Unix 秒の10進数文字列で、ランキングのミリ秒とは異なります。rev は保存済み版を指定し、省略時は最新を返します。X-Revision は版、X-Listed: 0 は一覧からの撤去を示します。本文は未処理の完全な HTML 文書なので、allow-scripts と allow-same-origin を付けない sandbox iframe のみで描画し、メイン DOM へ挿入しないでください。"
+      }
+    ],
+    "sourceFields": [
+      "title",
+      "description",
+      "overview",
+      "intro",
+      "stepRegister",
+      "stepProfile",
+      "stepInvite",
+      "stepDownload",
+      "scopesHint",
+      "regionHint",
+      "regionServers",
+      "regionCaution",
+      "security",
+      "archiveHint",
+      "archiveAxis",
+      "archiveServerIntl",
+      "archiveServerJp",
+      "limits"
+    ],
+    "corrected": [
+      "quota 100/minute 10000/day",
+      "save authorization absence returns 404",
+      "main site links use bdon.moe/account"
+    ],
+    "translatedAdditions": [
+      "public",
+      "contract",
+      "console",
+      "account",
+      "parameters",
+      "result",
+      "limits",
+      "auth",
+      "errors",
+      "api",
+      "version",
+      "publicIntro",
+      "snapshot",
+      "music",
+      "challenge",
+      "latest",
+      "caching",
+      "notice",
+      "curves",
+      "permission",
+      "saveError",
+      "saveFormat",
+      "charge",
+      "status"
+    ]
+  },
+  {
+    "locale": "ko-KR",
+    "prefix": "ko",
+    "pages": [
+      "index.md",
+      "quickstart.md",
+      "guides/auth.md",
+      "guides/limits.md",
+      "guides/errors.md",
+      "guides/saves.md",
+      "api/index.md",
+      "public-data.md",
+      "public-ranking-contract.md"
+    ],
+    "retained": [
+      {
+        "page": "index.md",
+        "field": "title",
+        "text": "오픈 플랫폼 API 문서"
+      },
+      {
+        "page": "index.md",
+        "field": "description",
+        "text": "Moenotes API로 공개 프로필, 순위표, 가챠 정보, 승인된 gzip 저장 데이터를 가져옵니다."
+      },
+      {
+        "page": "index.md",
+        "field": "intro",
+        "text": "앱 등록 즉시 clientID와 Secret이 발급됩니다. 봇, 인증 코드, 심사가 필요 없습니다."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepRegister",
+        "text": "로그인 후 콘솔에 앱 이름을 입력하여 생성하세요. 사용 가능한 모든 권한과 지역이 자동으로 활성화되므로 별도 선택이 필요 없습니다. clientID와 한 번만 표시되는 Secret을 저장하세요."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepProfile",
+        "text": "서버에서 Secret으로 공개 게임 API를 호출하세요. 공개 프로필에는 저장 데이터 승인이 필요하지 않습니다."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepInvite",
+        "text": "?invite=clientID가 포함된 링크를 보내세요. 사용자가 로그인 후 업로드한 특정 저장 데이터를 선택하여 명시적으로 승인합니다. 링크를 열기만 해서는 승인되지 않습니다."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "stepDownload",
+        "text": "승인된 saveServer/accountID 조합만 다운로드할 수 있습니다. 사용자는 언제든 권한을 취소할 수 있습니다."
+      },
+      {
+        "page": "quickstart.md",
+        "field": "security",
+        "text": "Secret은 서버에만 보관하고 브라우저 코드, URL 또는 공개 저장소에 넣지 마세요. OAuth 인증 코드, 콜백 또는 사용자 액세스 토큰은 발급되지 않습니다. 새 키를 배포한 후 이전 키를 취소하세요."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "scopesHint",
+        "text": "메인 사이트 콘솔에서 생성한 앱에는 사용 가능한 모든 scope와 지역이 자동으로 부여됩니다. 추가 선택은 필요 없습니다. 키는 앱의 scope로 제한되며 범위를 벗어난 요청은 403을 반환합니다. 저장 데이터 읽기에는 여전히 사용자의 명시적 승인이 필요합니다."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionHint",
+        "text": "모든 게임 API 경로는 /api/open/v1/moenotes/{region}로 시작하며 region은 필수입니다(tw/jp/en/kr). query 형식은 경로 형식과 동일하며 예로 /profile?playerProfileId=…, /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100이 있습니다. OpenAPI 문서는 /api/open/openapi.json, 기계 판독 카탈로그는 /api/open/catalog에 있습니다."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionServers",
+        "text": "region은 게임 서버를 선택하며, 같은 엔드포인트라도 서버마다 반환되는 데이터가 다릅니다. tw는 홍콩·마카오·대만 번체 서버, jp는 일본 서버, en은 국제(영어) 서버, kr은 한국 서버입니다. 숫자 id는 해당 리전 안에서만 의미가 있으므로 항상 계정이 속한 region을 전달하세요. 공지, 가챠, 이벤트, 순위표, 서클은 리전별로 관리되고 동기화되지 않으므로 한 리전의 id는 다른 리전에서 대개 유효하지 않습니다."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "regionCaution",
+        "text": "리전마다 같은 구조나 같은 데이터가 온다고 가정하지 마세요. region을 요청 URL, 캐시 키, 저장하는 모든 id에 포함하고, 특정 리전에서 데이터가 없는 것을 정상으로 취급하세요."
+      },
+      {
+        "page": "guides/auth.md",
+        "field": "security",
+        "text": "Secret은 서버에만 보관하고 브라우저 코드, URL 또는 공개 저장소에 넣지 마세요. OAuth 인증 코드, 콜백 또는 사용자 액세스 토큰은 발급되지 않습니다. 새 키를 배포한 후 이전 키를 취소하세요."
+      },
+      {
+        "page": "guides/limits.md",
+        "field": "security",
+        "text": "Secret은 서버에만 보관하고 브라우저 코드, URL 또는 공개 저장소에 넣지 마세요. OAuth 인증 코드, 콜백 또는 사용자 액세스 토큰은 발급되지 않습니다. 새 키를 배포한 후 이전 키를 취소하세요."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveHint",
+        "text": "JSON이 아닌 원본 gzip 바이트를 반환합니다. .gz 파일로 저장한 뒤 직접 압축을 해제하세요."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepInvite",
+        "text": "?invite=clientID가 포함된 링크를 보내세요. 사용자가 로그인 후 업로드한 특정 저장 데이터를 선택하여 명시적으로 승인합니다. 링크를 열기만 해서는 승인되지 않습니다."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "stepDownload",
+        "text": "승인된 saveServer/accountID 조합만 다운로드할 수 있습니다. 사용자는 언제든 권한을 취소할 수 있습니다."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveAxis",
+        "text": "저장 데이터 API는 게임 API의 region을 쓰지 않습니다. saveServer는 intl(국제 서버: 대만, 국제/영어, 한국 포함)과 jp(일본 서버) 두 값뿐이며 tw, en, kr은 없습니다. 어떤 국제 서버에서 업로드한 저장 데이터든 intl에 속하므로, 게임 API에서 쓰는 region이 아니라 계정이 실제로 플레이하는 서버를 기준으로 고르세요."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerIntl",
+        "text": "국제 서버: 대만, 국제/영어, 한국."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "archiveServerJp",
+        "text": "일본 서버."
+      },
+      {
+        "page": "guides/saves.md",
+        "field": "security",
+        "text": "Secret은 서버에만 보관하고 브라우저 코드, URL 또는 공개 저장소에 넣지 마세요. OAuth 인증 코드, 콜백 또는 사용자 액세스 토큰은 발급되지 않습니다. 새 키를 배포한 후 이전 키를 취소하세요."
+      },
+      {
+        "page": "api/index.md",
+        "field": "scopesHint",
+        "text": "메인 사이트 콘솔에서 생성한 앱에는 사용 가능한 모든 scope와 지역이 자동으로 부여됩니다. 추가 선택은 필요 없습니다. 키는 앱의 scope로 제한되며 범위를 벗어난 요청은 403을 반환합니다. 저장 데이터 읽기에는 여전히 사용자의 명시적 승인이 필요합니다."
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionHint",
+        "text": "모든 게임 API 경로는 /api/open/v1/moenotes/{region}로 시작하며 region은 필수입니다(tw/jp/en/kr). query 형식은 경로 형식과 동일하며 예로 /profile?playerProfileId=…, /event/ranking?eventId=1&amp;ranks=1&amp;ranks=100이 있습니다. OpenAPI 문서는 /api/open/openapi.json, 기계 판독 카탈로그는 /api/open/catalog에 있습니다."
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionServers",
+        "text": "region은 게임 서버를 선택하며, 같은 엔드포인트라도 서버마다 반환되는 데이터가 다릅니다. tw는 홍콩·마카오·대만 번체 서버, jp는 일본 서버, en은 국제(영어) 서버, kr은 한국 서버입니다. 숫자 id는 해당 리전 안에서만 의미가 있으므로 항상 계정이 속한 region을 전달하세요. 공지, 가챠, 이벤트, 순위표, 서클은 리전별로 관리되고 동기화되지 않으므로 한 리전의 id는 다른 리전에서 대개 유효하지 않습니다."
+      },
+      {
+        "page": "api/index.md",
+        "field": "regionCaution",
+        "text": "리전마다 같은 구조나 같은 데이터가 온다고 가정하지 마세요. region을 요청 URL, 캐시 키, 저장하는 모든 id에 포함하고, 특정 리전에서 데이터가 없는 것을 정상으로 취급하세요."
+      },
+      {
+        "page": "public-data.md",
+        "field": "music",
+        "text": "음악 순위표는 players 응답 순서를 유지하며 rank 필드가 없습니다. index + 1을 표시 순위로 쓰고 응답 순서에서 왔다고 명시하세요. 점수순으로 다시 정렬하거나 동점 규칙을 추정하지 말고 항상 100행이라고 가정하지 마세요. 빈 객체는 players ?? []로 처리합니다. musicId는 선택한 리전의 음악 카탈로그에 있어야 합니다."
+      },
+      {
+        "page": "public-data.md",
+        "field": "challenge",
+        "text": "먼저 이벤트의 challenges 카탈로그를 조회한 뒤 일반 musicId가 아닌 challengeMusicId로 요청하세요. ranks, 페이지 구분, 난이도 매개변수는 없습니다. 포인트 순위표가 disabled여도 챌린지 곡까지 중단된 것은 아닙니다. 각 곡의 수집 상태와 시각은 독립적입니다. X-Final-Quality: lastSeen은 마지막 성공 관측일 뿐 확인된 공식 최종 순위가 아니며, 여러 곡의 결과도 같은 시각 스냅샷이 아닙니다."
+      },
+      {
+        "page": "public-data.md",
+        "field": "latest",
+        "text": "latest는 병합 스냅샷입니다. 누락된 순위를 0으로 채우지 마세요. parts마다 fetchedAt이 있고 같은 순위의 여러 행에 dup가 표시될 수 있습니다. stale은 수집 중단 후 남은 과거 성공 결과, frozen은 집계 중 점수 동결을 뜻합니다. X-Server-Time과 updatedAt으로 데이터 나이를 계산하고 nextUpdateAt에 무작위 지연을 더해 폴링하세요."
+      },
+      {
+        "page": "public-data.md",
+        "field": "caching",
+        "text": "ETag와 If-None-Match를 사용해 304를 받고 Cache-Control을 준수하세요. X-Fetched-At은 실제 수집 시각이며 캐시 적중으로 바뀌지 않습니다. X-Stale: 1은 오래된 결과, X-Refreshing: 1은 갱신 대기 또는 진행 중입니다. 503 pending/upstream에는 Retry-After와 지수 백오프를 따르고 고정된 고빈도 재시도를 피하세요."
+      },
+      {
+        "page": "public-data.md",
+        "field": "notice",
+        "text": "공지 목록의 category 필터링은 클라이언트에서 합니다. startAt, endAt, lastUpdatedAt은 Unix 초의 10진수 문자열이며 순위표의 밀리초와 다릅니다. rev는 저장된 버전을 선택하며 생략하면 최신을 반환합니다. X-Revision은 버전, X-Listed: 0은 목록에서 내려간 공지를 나타냅니다. 본문은 필터링되지 않은 완전한 HTML이므로 allow-scripts와 allow-same-origin 없는 sandbox iframe에서만 표시하고 메인 DOM에 넣지 마세요."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "music",
+        "text": "음악 순위표는 players 응답 순서를 유지하며 rank 필드가 없습니다. index + 1을 표시 순위로 쓰고 응답 순서에서 왔다고 명시하세요. 점수순으로 다시 정렬하거나 동점 규칙을 추정하지 말고 항상 100행이라고 가정하지 마세요. 빈 객체는 players ?? []로 처리합니다. musicId는 선택한 리전의 음악 카탈로그에 있어야 합니다."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "challenge",
+        "text": "먼저 이벤트의 challenges 카탈로그를 조회한 뒤 일반 musicId가 아닌 challengeMusicId로 요청하세요. ranks, 페이지 구분, 난이도 매개변수는 없습니다. 포인트 순위표가 disabled여도 챌린지 곡까지 중단된 것은 아닙니다. 각 곡의 수집 상태와 시각은 독립적입니다. X-Final-Quality: lastSeen은 마지막 성공 관측일 뿐 확인된 공식 최종 순위가 아니며, 여러 곡의 결과도 같은 시각 스냅샷이 아닙니다."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "latest",
+        "text": "latest는 병합 스냅샷입니다. 누락된 순위를 0으로 채우지 마세요. parts마다 fetchedAt이 있고 같은 순위의 여러 행에 dup가 표시될 수 있습니다. stale은 수집 중단 후 남은 과거 성공 결과, frozen은 집계 중 점수 동결을 뜻합니다. X-Server-Time과 updatedAt으로 데이터 나이를 계산하고 nextUpdateAt에 무작위 지연을 더해 폴링하세요."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "caching",
+        "text": "ETag와 If-None-Match를 사용해 304를 받고 Cache-Control을 준수하세요. X-Fetched-At은 실제 수집 시각이며 캐시 적중으로 바뀌지 않습니다. X-Stale: 1은 오래된 결과, X-Refreshing: 1은 갱신 대기 또는 진행 중입니다. 503 pending/upstream에는 Retry-After와 지수 백오프를 따르고 고정된 고빈도 재시도를 피하세요."
+      },
+      {
+        "page": "public-ranking-contract.md",
+        "field": "notice",
+        "text": "공지 목록의 category 필터링은 클라이언트에서 합니다. startAt, endAt, lastUpdatedAt은 Unix 초의 10진수 문자열이며 순위표의 밀리초와 다릅니다. rev는 저장된 버전을 선택하며 생략하면 최신을 반환합니다. X-Revision은 버전, X-Listed: 0은 목록에서 내려간 공지를 나타냅니다. 본문은 필터링되지 않은 완전한 HTML이므로 allow-scripts와 allow-same-origin 없는 sandbox iframe에서만 표시하고 메인 DOM에 넣지 마세요."
+      }
+    ],
+    "sourceFields": [
+      "title",
+      "description",
+      "overview",
+      "intro",
+      "stepRegister",
+      "stepProfile",
+      "stepInvite",
+      "stepDownload",
+      "scopesHint",
+      "regionHint",
+      "regionServers",
+      "regionCaution",
+      "security",
+      "archiveHint",
+      "archiveAxis",
+      "archiveServerIntl",
+      "archiveServerJp",
+      "limits"
+    ],
+    "corrected": [
+      "quota 100/minute 10000/day",
+      "save authorization absence returns 404",
+      "main site links use bdon.moe/account"
+    ],
+    "translatedAdditions": [
+      "public",
+      "contract",
+      "console",
+      "account",
+      "parameters",
+      "result",
+      "limits",
+      "auth",
+      "errors",
+      "api",
+      "version",
+      "publicIntro",
+      "snapshot",
+      "music",
+      "challenge",
+      "latest",
+      "caching",
+      "notice",
+      "curves",
+      "permission",
+      "saveError",
+      "saveFormat",
+      "charge",
+      "status"
+    ]
+  }
+]

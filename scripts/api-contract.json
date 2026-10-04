@@ -1,0 +1,490 @@
+{
+  "source": {
+    "repository": "StarMoe-org/moenotes-api",
+    "version": "0.1.0-alpha.11",
+    "commit": "d094de568c570889b318e9490574da678fddf26d"
+  },
+  "routes": [
+    {
+      "path": "/announcement",
+      "scope": "moenotes:announcements",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/announcement/{id}",
+      "scope": "moenotes:announcements",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/announcements",
+      "scope": "moenotes:announcements",
+      "parameters": [
+        {
+          "name": "selectedTab",
+          "in": "query",
+          "required": false
+        }
+      ]
+    },
+    {
+      "path": "/announcements/{selectedTab}",
+      "scope": "moenotes:announcements",
+      "parameters": [
+        {
+          "name": "selectedTab",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/arena/deck-trend",
+      "scope": "moenotes:decks",
+      "parameters": [
+        {
+          "name": "musicId",
+          "in": "query",
+          "required": true
+        },
+        {
+          "name": "arenaSeasonId",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/arena/ranking",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "arenaSeasonId",
+          "in": "query",
+          "required": true
+        },
+        {
+          "name": "bandId",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "rankingStart",
+          "in": "query",
+          "required": true
+        },
+        {
+          "name": "rankingEnd",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/arena/{arenaSeasonId}/music/{musicId}/deck-trend",
+      "scope": "moenotes:decks",
+      "parameters": [
+        {
+          "name": "musicId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "arenaSeasonId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/arena/{arenaSeasonId}/ranking/{rankingStart}/{rankingEnd}",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "arenaSeasonId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "bandId",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "rankingStart",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "rankingEnd",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/arena/{arenaSeasonId}/ranking/{rankingStart}/{rankingEnd}/band/{bandId}",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "arenaSeasonId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "bandId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "rankingStart",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "rankingEnd",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/circle",
+      "scope": "moenotes:circles",
+      "parameters": [
+        {
+          "name": "circleId",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/circle/{circleId}",
+      "scope": "moenotes:circles",
+      "parameters": [
+        {
+          "name": "circleId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/circles/search",
+      "scope": "moenotes:circles",
+      "parameters": [
+        {
+          "name": "options.name",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "options.memberRange",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "options.joinRule",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "options.playStyle",
+          "in": "query",
+          "required": false
+        }
+      ]
+    },
+    {
+      "path": "/circles/search/{name}",
+      "scope": "moenotes:circles",
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "options.memberRange",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "options.joinRule",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "options.playStyle",
+          "in": "query",
+          "required": false
+        }
+      ]
+    },
+    {
+      "path": "/event/challenge-ranking",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "challengeMusicId",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/event/challenge/{challengeMusicId}/ranking",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "challengeMusicId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/event/deck",
+      "scope": "moenotes:decks",
+      "parameters": [
+        {
+          "name": "playerId",
+          "in": "query",
+          "required": true
+        },
+        {
+          "name": "eventId",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/event/ranking",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "eventId",
+          "in": "query",
+          "required": true
+        },
+        {
+          "name": "ranks",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/event/{eventId}/deck/{playerId}",
+      "scope": "moenotes:decks",
+      "parameters": [
+        {
+          "name": "playerId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "eventId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/event/{eventId}/ranking/{ranks}",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "eventId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "ranks",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/gacha/rates",
+      "scope": "moenotes:gacha",
+      "parameters": [
+        {
+          "name": "gachaId",
+          "in": "query",
+          "required": true
+        },
+        {
+          "name": "productId",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "selectedPickUp",
+          "in": "query",
+          "required": false
+        }
+      ]
+    },
+    {
+      "path": "/gacha/{gachaId}/rates",
+      "scope": "moenotes:gacha",
+      "parameters": [
+        {
+          "name": "gachaId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "productId",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "selectedPickUp",
+          "in": "query",
+          "required": false
+        }
+      ]
+    },
+    {
+      "path": "/gacha/{gachaId}/rates/{selectedPickUp}",
+      "scope": "moenotes:gacha",
+      "parameters": [
+        {
+          "name": "gachaId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "productId",
+          "in": "query",
+          "required": false
+        },
+        {
+          "name": "selectedPickUp",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/music/ranking",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "musicId",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/music/{musicId}/ranking",
+      "scope": "moenotes:rankings",
+      "parameters": [
+        {
+          "name": "musicId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/player/{playerId}/favorites",
+      "scope": "moenotes:profiles",
+      "parameters": [
+        {
+          "name": "playerId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/profile",
+      "scope": "moenotes:profiles",
+      "parameters": [
+        {
+          "name": "playerProfileId",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/profile/favorites",
+      "scope": "moenotes:profiles",
+      "parameters": [
+        {
+          "name": "playerId",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/profile/{profileId}",
+      "scope": "moenotes:profiles",
+      "parameters": [
+        {
+          "name": "profileId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/profile/{profileId}/card/{page}",
+      "scope": "moenotes:profile-images",
+      "parameters": [
+        {
+          "name": "profileId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/profiles",
+      "scope": "moenotes:profiles",
+      "parameters": [
+        {
+          "name": "accountIds",
+          "in": "query",
+          "required": true
+        }
+      ]
+    },
+    {
+      "path": "/profiles/{accountIds}",
+      "scope": "moenotes:profiles",
+      "parameters": [
+        {
+          "name": "accountIds",
+          "in": "path",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
